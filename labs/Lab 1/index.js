@@ -28,3 +28,5 @@ const indexCanadaDay = bob.findIndex(holidays, {name: "Canada Day"});
 
 console.log(`Index of Christmas: ${indexChristmas}`);
 console.log(`Index of Christmas: ${indexCanadaDay}`);
+
+console.log("Test!")
