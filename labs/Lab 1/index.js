@@ -19,8 +19,9 @@ holidays.forEach(holiday => {
     console.log(`${holiday.name} is in ${daysTill} days`); // convert milliseconds -> seconds -> hours -> days
 });
 
+// random holiday generator (selects a random holiday from the given list)
 const randomHoliday = bob.sample(holidays)
-console.log(`Random Holiday: ${randomHoliday}`)
+console.log(`Random Holiday: ${bob.sample(holidays)}`)
 console.log(randomHoliday)
 
 const indexChristmas = bob.findIndex(holidays, {name: "Christmas"});
@@ -28,5 +29,3 @@ const indexCanadaDay = bob.findIndex(holidays, {name: "Canada Day"});
 
 console.log(`Index of Christmas: ${indexChristmas}`);
 console.log(`Index of Christmas: ${indexCanadaDay}`);
-
-console.log("Test!")
