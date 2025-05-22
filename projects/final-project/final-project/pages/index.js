@@ -1,10 +1,14 @@
+import HomePage from "./components/Home";
+import Navbar from "./components/Navbar";
+
 export default function Home() {
 
   //...
 
   return (
     <>
-      <p className="text-2xl text-red-400">I Love Narda so Much</p>
+      {/* <Navbar /> */}
+      <HomePage />
     </>
   );
 }
