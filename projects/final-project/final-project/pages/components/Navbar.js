@@ -1,4 +1,13 @@
+import { useRouter } from 'next/router';
+
 export default function Navbar() {
+  const router = useRouter();
+
+  const LogInClickHandler = (e) => {
+    e.preventDefault();
+    router.push('/components/LogIn');
+  };
+
   return (
     <>
       <div className="flex col-2 justify-between">
@@ -58,7 +67,7 @@ export default function Navbar() {
         </div>
         {/* Log-In & Sign-up Buttons */}
         <div className="flex space-x-4">
-          <button className="hunter-button bg-gray-600 p-2 text-[10px] hunterra rounded-xl cursor-pointer">Login / SignUp</button>
+          <button onClick={LogInClickHandler} className="hunter-button bg-gray-600 p-2 text-[10px] hunterra rounded-xl cursor-pointer">Login / SignUp</button>
         </div>
       </div>
     </>
