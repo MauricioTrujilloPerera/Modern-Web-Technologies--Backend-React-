@@ -67,8 +67,8 @@ export default function LogInPage() {
               Log In
             </button>
             <div className='flex justify-center mt-5 flex-col text-center'>
-                <a className='text-[13.5px] text-blue-500 cursor-pointer m-2'>Don't have an Account? Sign-up for Free!</a>
-                <a className='text-[11.5px] text-blue-200 cursor-pointer'>Forgot Password? Click Here!</a>
+                <a className='link-hover text-[13.5px] text-blue-500 cursor-pointer m-2'>Don't have an Account? Sign-up for Free!</a>
+                <a className='link-hover text-[11.5px] text-blue-200 cursor-pointer'>Forgot Password? Click Here!</a>
             </div>
           </form>
         </div>

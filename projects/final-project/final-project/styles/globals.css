@@ -81,3 +81,7 @@ body {
     transform: translateY(-10px);
   }
 }
+
+.link-hover:hover {
+  text-decoration: underline;
+}
