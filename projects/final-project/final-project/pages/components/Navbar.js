@@ -44,7 +44,7 @@ export default function Navbar() {
             />
           </svg>
 
-          {/* Settings */}
+          {/* Search */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
