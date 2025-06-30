@@ -10,8 +10,10 @@ export default function LogInPage() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("Logging in with:", email, password);
-    // Add login logic here
+
+    alert(`Username: ${username}`);
+    alert(`Email: ${email}`);
+    alert(`Password: ${password}`);
   };
 
   const BookingClickHandler = (e) => {

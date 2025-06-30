@@ -4,19 +4,20 @@ import multer from "multer";
 import lodash from "lodash";
 import fs from "fs";
 import { fileURLToPath } from "url";
-import { _directoryName } from "path";
+import { dirname } from "path";
 
 const server = express();
 const PORT = process.env.PORT || 3000;
 server.use(cors());
 
-const _directoryName = fileURLToPath(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename)
 console.log(_directoryName);
 
-const storage = multer.diskStorage({ 
-    destination: function (request, file, cd) (
+const storage = multer.diskStorage({
+    destination: function (request, file, cd){
         cb(null, "uploads/")
-    ),
+    },
     filename: function (request, file, cb) {
         
     }
