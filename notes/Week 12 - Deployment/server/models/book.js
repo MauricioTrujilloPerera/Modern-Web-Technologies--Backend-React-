@@ -32,7 +32,11 @@ const bookSchema = new mongoose.Schema(
     },
     created_by_user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: 'user',
+    },
+    product_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'product',
     },
   },
   {

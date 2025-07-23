@@ -1,7 +1,12 @@
-import express, { response } from "express";
+import express from "express";
 import mongoose from "mongoose"; //connect to database
 import dotenv from "dotenv"; // this links the .env file we have in this dir
-import Book from "./models/book.js"
+import cors from "cors";
+import product_router from "./routers/product_router.js"
+// import user_router from "./routers/product_router.js"
+// import review_router from "./routers/product_router.js"
+
+
 
 dotenv.config(); // adds our env config to the server config for use
 
@@ -24,31 +29,14 @@ database.on("error", (err) => { // turns the mongodb connection ON
 // middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 // routes
 app.get("/", (req, res) => {
-  res.send("Welcome to our server");
+  res.json({message: "Welcome to our server"});
 });
 
-// this makes it so when you open the books json on the web, it filters whatever you're looking for!
-app.get("/books", async(req, res) => {
-    try {
-        const results = await Book.find(); // example filter: {title: "Parallel Lines"}, {title: 1, price: 1}
-        res.json(results)
-    } catch (error) {
-        
-    }
-});
 
-const laptopSchema = mongoose.Schema()
-const laptops = mongoose.model("laptops", laptopSchema)
-app.get("laptops", async(request, response) => {
-  try {
-    
-  } catch (error) {
-    
-  }
-})
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);

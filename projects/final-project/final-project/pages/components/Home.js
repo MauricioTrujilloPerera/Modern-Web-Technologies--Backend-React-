@@ -19,6 +19,8 @@ export default function HomePage() {
             setVisible(true);
         }, 100)
 
+        
+
         return () => clearTimeout(timer);
     }, [])
     
