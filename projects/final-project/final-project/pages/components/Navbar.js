@@ -1,11 +1,45 @@
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const router = useRouter();
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedUser = localStorage.getItem("elkexpedition_user");
+      if (storedUser) {
+        try {
+          const userObj = JSON.parse(storedUser);
+          setLoggedIn(true);
+          setUsername(userObj.username || "");
+        } catch {
+          setLoggedIn(false);
+          setUsername("");
+        }
+      } else {
+        setLoggedIn(false);
+        setUsername("");
+      }
+    }
+  }, [typeof window !== "undefined" && window.location.pathname]);
 
   const LogInClickHandler = (e) => {
     e.preventDefault();
     router.push("/components/LogIn");
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("elkexpedition_user");
+    setLoggedIn(false);
+    setUsername("");
+    window.location.href = "/"; // Full reload to home, avoids reload loop
+  };
+
+  const handleProfileClick = (e) => {
+    e.preventDefault();
+    router.push("/components/Profile");
   };
 
   return (
@@ -20,6 +54,7 @@ export default function Navbar() {
             strokeWidth="1.5"
             stroke="currentColor"
             className="navitem size-6 text-gray-100 cursor-pointer"
+            onClick={handleProfileClick}
           >
             <path
               strokeLinecap="round"
@@ -60,14 +95,23 @@ export default function Navbar() {
             />
           </svg>
         </div>
-        {/* Log-In & Sign-up Buttons */}
+        {/* Log-In & Sign-up or Logout Button */}
         <div className="flex space-x-4">
-          <button
-            onClick={LogInClickHandler}
-            className="hunter-button bg-gray-600 p-2 text-[10px] hunterra rounded-xl cursor-pointer"
-          >
-            Login / SignUp
-          </button>
+          {loggedIn ? (
+            <button
+              onClick={handleLogout}
+              className="hunter-button bg-red-600 p-2 text-[10px] hunterra rounded-xl cursor-pointer"
+            >
+              Log Out
+            </button>
+          ) : (
+            <button
+              onClick={LogInClickHandler}
+              className="hunter-button bg-gray-600 p-2 text-[10px] hunterra rounded-xl cursor-pointer"
+            >
+              Login / SignUp
+            </button>
+          )}
         </div>
       </div>
     </>

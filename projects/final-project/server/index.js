@@ -2,11 +2,10 @@ import express from "express";
 import mongoose from "mongoose"; //connect to database
 import dotenv from "dotenv"; // this links the .env file we have in this dir
 import cors from "cors";
-import product_router from "./routers/product_router.js"
+// import product_router from "./routers/product_router.js"
+import LoginAuth from "./LoginAuth.js";
 // import user_router from "./routers/product_router.js"
 // import review_router from "./routers/product_router.js"
-
-
 
 dotenv.config(); // adds our env config to the server config for use
 
@@ -36,7 +35,7 @@ app.get("/", (req, res) => {
   res.json({message: "Welcome to our server"});
 });
 
-
+app.use("/auth", LoginAuth);
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
