@@ -1,7 +1,28 @@
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function FeaturedPage() {
   const router = useRouter();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedUser = localStorage.getItem("elkexpedition_user");
+      setUser(storedUser ? JSON.parse(storedUser) : null);
+    }
+  }, []);
+
+  const handleBook = (e) => {
+    e.preventDefault();
+    // Placeholder: booking logic here
+    alert("Booking successful! (placeholder)");
+  };
+
+  const handleLoginPrompt = (e) => {
+    e.preventDefault();
+    alert("Please log in to book a hunt!");
+    router.push("/components/LogIn");
+  };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 bg-gray-950 min-h-screen">
@@ -20,7 +41,11 @@ export default function FeaturedPage() {
             <strong>Location:</strong> Alberta, Canada
           </p>
         </div>
-        <button className="mt-4 bg-orange-600 text-white font-semibold py-2 px-4 rounded-xl hover:bg-orange-700 transition">
+        <button
+          className="mt-4 bg-orange-600 text-white font-semibold py-2 px-4 rounded-xl hover:bg-orange-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+          onClick={user ? handleBook : handleLoginPrompt}
+          disabled={!user}
+        >
           Book Now
         </button>
       </div>

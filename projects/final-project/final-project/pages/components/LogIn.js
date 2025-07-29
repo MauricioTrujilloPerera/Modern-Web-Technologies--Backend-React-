@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from 'next/image';
 
 export default function LogInPage() {
@@ -12,6 +12,12 @@ export default function LogInPage() {
   const [phone, setPhone] = useState("");
   const [province, setProvince] = useState("");
   const [loginError, setLoginError] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("prevPath", document.referrer ? new URL(document.referrer).pathname : "/");
+    }
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -27,8 +33,13 @@ export default function LogInPage() {
       if (response.ok) {
         // Save user info to localStorage
         localStorage.setItem("elkexpedition_user", JSON.stringify(data.user));
-        // Redirect to home page
-        router.push("/");
+        // Redirect to previous page or bookings if referrer is bookings
+        const prevPath = sessionStorage.getItem("prevPath");
+        if (prevPath && prevPath !== "/components/LogIn") {
+          router.push(prevPath);
+        } else {
+          router.push("/components/HuntBookings");
+        }
       } else {
         setLoginError(data.message || "Login failed");
       }

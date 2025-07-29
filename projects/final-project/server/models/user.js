@@ -7,6 +7,18 @@ const userSchema = mongoose.Schema({
   phone: { type: String, required: false },
   province: { type: String, required: false },
   profilePic: { type: String, required: false },
+  isAdmin: { type: Boolean, default: false },
+  enrolledHunts: [{ type: String }],
+  enrollmentRequests: [{
+    huntId: { type: String, required: true },
+    requesterId: { type: String, required: true },
+    status: { type: String, enum: ['pending', 'accepted', 'denied'], default: 'pending' },
+  }],
+  notifications: [{
+    message: { type: String, required: true },
+    date: { type: Date, default: Date.now },
+    read: { type: Boolean, default: false },
+  }],
 }, { timestamps: true });
 
 const User = mongoose.model("User", userSchema);

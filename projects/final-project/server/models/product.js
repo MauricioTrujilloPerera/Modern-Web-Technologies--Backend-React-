@@ -10,7 +10,9 @@ const productSchema = mongoose.Schema({
   hunt_duration: { type: Number, required: false },
   hunt_tags: [{ type: String }], // different because it will be an array of values!
   maxGroupSize: { type: Number, required: false },
-  hunt_packageType: { type: String, required: false },
+  hunt_packageType: [{ type: String, required: false }],
+  description: { type: String, required: false },
+  userId: { type: String, required: true },
 });
 
 const Product = mongoose.model("products", productSchema);

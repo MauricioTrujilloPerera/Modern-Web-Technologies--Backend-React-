@@ -1,19 +1,18 @@
-/*
-C
-1 - use: /create_product
-    parse payload
-    add user verification
-    then save 
+import express from "express";
+import { createHunt, getAllHunts, getHuntsByUser, deleteHunt } from "../controllers/product_controller.js";
 
-R
-/all
-    product.find()
+const router = express.Router();
 
-    /product/:id
+// Create a new hunt
+router.post("/create", createHunt);
 
+// Get all hunts
+router.get("/all", getAllHunts);
 
-U
+// Get hunts by user
+router.get("/user/:userId", getHuntsByUser);
 
-D
+// Delete a hunt by ID
+router.delete("/delete/:id", deleteHunt);
 
-*/
+export default router;

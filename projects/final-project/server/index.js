@@ -4,6 +4,7 @@ import dotenv from "dotenv"; // this links the .env file we have in this dir
 import cors from "cors";
 // import product_router from "./routers/product_router.js"
 import LoginAuth from "./LoginAuth.js";
+import product_router from "./routers/product_router.js";
 // import user_router from "./routers/product_router.js"
 // import review_router from "./routers/product_router.js"
 
@@ -36,6 +37,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/auth", LoginAuth);
+app.use("/products", product_router);
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
