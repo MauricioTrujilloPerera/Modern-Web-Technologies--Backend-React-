@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const productSchema = mongoose.Schema({
-  phone: { type: String, required: false },
+  phone: { type: Number, required: false },
   hunt_animalType: { type: String, required: true },
   hunt_location: { type: String, required: true },
   hunt_date: { type: Date, required: true },

@@ -31,7 +31,10 @@ export const createHunt = async (req, res) => {
         return res.status(400).json({ message: "maxGroupSize must be a positive number." });
       }
     }
-    let parsedPhone = phone || undefined;
+    let parsedPhone = phone;
+    if (phone !== undefined && phone !== null && phone !== "") {
+      parsedPhone = String(phone);
+    }
     let parsedHuntPrice = Number(hunt_price);
     if (isNaN(parsedHuntPrice)) {
       return res.status(400).json({ message: "hunt_price must be a number." });
@@ -53,9 +56,9 @@ export const createHunt = async (req, res) => {
       hunt_price: parsedHuntPrice,
       hunt_displayImages,
       hunt_duration: parsedHuntDuration,
-      hunt_tags: hunt_tags ? (Array.isArray(hunt_tags) ? hunt_tags : String(hunt_tags).split(',').map(t => t.trim()).filter(t => t.length > 0)) : [],
+      hunt_tags: hunt_tags ? Array.isArray(hunt_tags) ? hunt_tags : hunt_tags.split(',').map(t => t.trim()) : [],
       maxGroupSize: parsedMaxGroupSize,
-      hunt_packageType: hunt_packageType ? (Array.isArray(hunt_packageType) ? hunt_packageType : [hunt_packageType]) : [],
+      hunt_packageType,
       description,
       userId
     });

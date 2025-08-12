@@ -214,7 +214,7 @@ export default function BookingsPage() {
                         <span className="text-gray-400 text-xs">{hunt.hunt_date ? new Date(hunt.hunt_date).toLocaleDateString() : "-"}</span>
                       </div>
                       <span className="text-cream text-sm">Location: <span className="text-white">{hunt.hunt_location}</span></span>
-                      <span className="text-cream text-sm">Price (per day): <span className="text-white">${hunt.hunt_price}</span></span>
+                      <span className="text-cream text-sm">Price: <span className="text-white">${hunt.hunt_price}</span></span>
                       {hunt.maxGroupSize && <span className="text-cream text-sm">Max Group Size: <span className="text-white">{hunt.maxGroupSize}</span></span>}
                       {hunt.hunt_duration && <span className="text-cream text-sm">Duration: <span className="text-white">{hunt.hunt_duration} days</span></span>}
                       {hunt.hunt_packageType && <span className="text-cream text-sm">Package: <span className="text-white">{hunt.hunt_packageType}</span></span>}
@@ -309,7 +309,6 @@ export default function BookingsPage() {
               <div className="text-gray-400 text-center">No hunts found. Try adjusting your filters.</div>
             )}
           </div>
-          
           {/* Hunt Details Modal */}
           {selectedHunt && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
@@ -329,7 +328,7 @@ export default function BookingsPage() {
                 )}
                 <div className="text-cream text-sm mb-2">Location: <span className="text-white">{selectedHunt.hunt_location}</span></div>
                 <div className="text-cream text-sm mb-2">Date: <span className="text-white">{selectedHunt.hunt_date ? new Date(selectedHunt.hunt_date).toLocaleDateString() : "-"}</span></div>
-                <div className="text-cream text-sm mb-2">Price (per day): <span className="text-white">${selectedHunt.hunt_price}</span></div>
+                <div className="text-cream text-sm mb-2">Price: <span className="text-white">${selectedHunt.hunt_price}</span></div>
                 {selectedHunt.hunt_price && (
                   <div className="text-sm text-gray-400 mb-2">
                     Platform fee (1%): <span className="text-orange-400 font-bold">${(Number(selectedHunt.hunt_price) * 0.01).toFixed(2)}</span><br/>

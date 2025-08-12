@@ -623,7 +623,7 @@ export default function ProfilePage() {
                   ))}
                 </div>
               )}
-            </div>s
+            </div>
             {/* (Optional) Show your current friends below */}
             <div className="w-full flex flex-col gap-4 mt-4">
               {MOCK_FRIENDS.map(friend => (
@@ -871,7 +871,6 @@ export default function ProfilePage() {
     }
   };
 
-  {/* --------------------- || PROFILE BOXES AND SECTIONS || --------------------- */}
   return (
     <div className="flex min-h-screen bg-gray-950">
       {/* Sidebar */}
@@ -882,16 +881,10 @@ export default function ProfilePage() {
           {SIDEBAR_OPTIONS.map(opt => (
             <button
               key={opt.key}
-              className={`w-full h-10 text-center px-4 rounded-lg font-medium text-sm flex items-center justify-center ${
-                opt.key === "logout" 
-                  ? "bg-gradient-to-r from-red-600 to-red-700 text-white hover:from-red-700 hover:to-red-800" 
-                  : activeTab === opt.key 
-                    ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white" 
-                    : "bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-200 hover:from-blue-500/30 hover:to-purple-500/30 hover:text-white"
-              }`}
+              className={`w-full text-left px-4 py-2 rounded-lg font-medium text-base transition-all ${activeTab === opt.key ? "bg-amber-400 text-gray-900" : "bg-gray-800 text-cream hover:bg-gray-700"}`}
               onClick={() => setActiveTab(opt.key)}
             >
-              <span className="relative z-10 font-medium tracking-wide">{opt.label}</span>
+              {opt.label}
             </button>
           ))}
         </nav>
